@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pokes</title>
+    <style>
+      .main{
+        width: 700px;
+        height: 600px;
+      }
+      .box1{
+        width: 300px;
+        height: 400px;
+        border: 1px solid black;
+        display: inline-block;
+        padding: 5px;
+      }
+      .box2{
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
+        display: inline-block;
+        vertical-align: top;
+        padding: 5px;
+      }
+      .box3{
+        width: 300px;
+        height: 200px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="box1">
+        <h2>Registration</h2>
+        <form action="register" method="POST">
+          {% csrf_token %}
+          <p>Name: <input type="text" name="name"></p>
+          <p>Alias: <input type="text" name="alias"></p>
+          <p>Email: <input type="text" name="email"></p>
+          <p>Password: <input type="password" name="pass1"></p>
+          <p>Confirm pw: <input type="password" name="pass2"></p>
+          <p>Date of Birth: <input type="date" name="bday"></p>
+          <p><input type="submit" value="Register"></p>
+        </form>
+      </div>
+      <div class="box2">
+        <h2>Login</h2>
+        <form action="login" method="POST">
+          {% csrf_token %}
+          <p>Email: <input type="text" name="lemail"></p>
+          <p>Password: <input type="password" name="lpassword"></p>
+          <p><input type="submit" value="Login"></p>
+        </form>
+      </div>
+      <div class="box3">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

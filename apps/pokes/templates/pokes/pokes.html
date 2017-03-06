@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pokes page</title>
+  </head>
+  <body>
+    <h1>Hello {{user.name}}!</h1>
+    {% if trap %}
+    <p>You have been poked {{trap.count}} times</p>
+    {% endif %}
+    <a href="logout">Logout</a>
+
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{message}}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    <div class="box">
+      {% for people in trap %}
+      <p>{{people.poker.name}} poked you {{people.poker_set.count}} time(s)!</p>
+
+      {% endfor %}
+
+    </div>
+    <h3>People you may want to poke</h3>
+    <div class="box3">
+      <table class="table1">
+        <tr>
+          <th>Name:</th>
+          <th>Alias:</th>
+          <th>Email Address:</th>
+          <th>Poke History:</th>
+          <th>Action:</th>
+        </tr>
+          {% for i in userlist %}
+        <tr>
+          <td>{{i.name}}</a></td>
+          <td>{{i.alias}}</td>
+          <td>{{i.email}}</td>
+          {% if trap2 %}
+            {% for i in trap2 %}
+            <td>{{i.poked_set.count}}</td>
+            {% endfor %}
+            {% else %}
+            <td>0 Pokes</td>
+
+          {% endif %}
+          <td><a href="{% url 'poked' i.id %}">Poke</a></td>
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+
+  </body>
+</html>
